@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:dotnetmauiallfeaturedemo.ViewModels"
+             xmlns:m="clr-namespace:dotnetmauiallfeaturedemo.Model"
+             x:Class="dotnetmauiallfeaturedemo.MainPage"
+             x:DataType="vm:MainViewModel">
+
+
+
+    <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshingCommand}">
+        <CollectionView ItemsSource="{Binding Blogs}" RemainingItemsThreshold="10" >
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="m:Blog">
+                    <!-- Define the item template for each item in the collection -->
+                    <StackLayout>
+                        <Frame Padding="10" Margin="3" BackgroundColor="#EEEEEE">
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Frame HeightRequest="100" WidthRequest="100" CornerRadius="100" HasShadow="False">
+                                    <Image Source="{Binding ImageUrl}"
+    Aspect="AspectFill"
+    HorizontalOptions="Fill"
+    VerticalOptions="Fill" />
+                                </Frame>
+                                <StackLayout Grid.Column="1" Margin="10,25,10,10">
+                                    <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" />
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+
+</ContentPage>
