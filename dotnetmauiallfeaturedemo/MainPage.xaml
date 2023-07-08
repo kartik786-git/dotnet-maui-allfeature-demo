@@ -22,14 +22,17 @@
                                 </Grid.ColumnDefinitions>
                                 <Frame HeightRequest="100" WidthRequest="100" CornerRadius="100" HasShadow="False">
                                     <Image Source="{Binding ImageUrl}"
-    Aspect="AspectFill"
-    HorizontalOptions="Fill"
-    VerticalOptions="Fill" />
+                                    Aspect="AspectFill"
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="Fill" />
                                 </Frame>
                                 <StackLayout Grid.Column="1" Margin="10,25,10,10">
                                     <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" />
                                 </StackLayout>
                             </Grid>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=GoToDetailCommand}" CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
                         </Frame>
                     </StackLayout>
                 </DataTemplate>

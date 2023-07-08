@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using dotnetmauiallfeaturedemo.Model;
 using dotnetmauiallfeaturedemo.Services;
+using dotnetmauiallfeaturedemo.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -44,6 +45,20 @@ namespace dotnetmauiallfeaturedemo.ViewModels
         public async Task LoadDataAsync()
         {
             Blogs = new ObservableCollection<Blog>(await _blogService.GetBlogsAync());
+        }
+
+        //[RelayCommand]
+        //private async void GoToDetail(Blog blog)
+        //{
+        //    await Shell.Current.GoToAsync($"{nameof(BlogDetailsPage)}?Id={blog.Id}");
+        //}
+
+        [RelayCommand]
+        private async void GoToDetail(Blog blog)
+        {
+            await Shell.Current.GoToAsync($"{nameof(BlogDetailsPage)}",true,
+                new Dictionary<string, object> { { "Blog", blog } }
+                );
         }
     }
 }

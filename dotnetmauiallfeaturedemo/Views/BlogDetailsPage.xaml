@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:dotnetmauiallfeaturedemo.ViewModels"
+             x:Class="dotnetmauiallfeaturedemo.Views.BlogDetailsPage"
+             x:DataType="vm:BlogDetailViewModel"
+             Title="BlogDetailsPage">
+    <ScrollView>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <BoxView BackgroundColor="{StaticResource Primary}" HorizontalOptions="FillAndExpand"
+                       HeightRequest="100" Grid.ColumnSpan="3"/>
+                <StackLayout Grid.RowSpan="2" Grid.Column="1" Margin="0,50,0,0">
+                    <Image Source="{Binding Blog.ImageUrl}"
+           Aspect="AspectFit"
+           HeightRequest="200" />
+                    <Label FontSize="Title" Text="{Binding Blog.Name}"  HorizontalOptions="Center" Grid.Row="1" Margin="10"/>
+                    <Label FontSize="Subtitle" Text="{Binding Blog.Description}"  HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" WidthRequest="300" Grid.Row="1"   Margin="10"/>
+                </StackLayout>
+
+            </Grid>
+            <Button Text="Go Back" Command="{Binding GoBackCommand}" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

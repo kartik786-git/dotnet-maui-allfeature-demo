@@ -10,5 +10,7 @@ namespace dotnetmauiallfeaturedemo.Services
     public interface IBlogService
     {
         Task<IEnumerable<Blog>> GetBlogsAync();
+
+        Task<Blog> GetBlogByIdAsync(int Id);
     }
 }
