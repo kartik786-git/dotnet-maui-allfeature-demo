@@ -21,6 +21,8 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
+		// resolve httpclient
+		builder.Services.AddSingleton<HttpClient>();
 
 		//services
 		builder.Services.AddSingleton<IBlogService, BlogService>();
@@ -28,10 +30,12 @@ public static class MauiProgram
 		//view model
 		builder.Services.AddSingleton<MainViewModel>();
 		builder.Services.AddSingleton<BlogDetailViewModel>();
+		builder.Services.AddSingleton<AddBlogViewModel>();
 
 		//pages
 		builder.Services.AddSingleton<MainPage>();
 		builder.Services.AddSingleton<BlogDetailsPage>();
+		builder.Services.AddSingleton<AddBlogPage>();
 
 		return builder.Build();
 	}

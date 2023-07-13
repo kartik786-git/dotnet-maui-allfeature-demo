@@ -44,7 +44,9 @@ namespace dotnetmauiallfeaturedemo.ViewModels
 
         public async Task LoadDataAsync()
         {
-            Blogs = new ObservableCollection<Blog>(await _blogService.GetBlogsAync());
+            string apiUri = "https://v19qjl2z-5035.asse.devtunnels.ms/api/blog";
+
+            Blogs = new ObservableCollection<Blog>(await _blogService.GetBlogsAync(apiUri));
         }
 
         //[RelayCommand]
@@ -60,5 +62,12 @@ namespace dotnetmauiallfeaturedemo.ViewModels
                 new Dictionary<string, object> { { "Blog", blog } }
                 );
         }
+
+        [RelayCommand]
+        public async void AddBlog()
+        {
+            await Shell.Current.GoToAsync(nameof(AddBlogPage));
+        }
+
     }
 }

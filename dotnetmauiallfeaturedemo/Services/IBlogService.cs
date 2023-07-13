@@ -9,8 +9,10 @@ namespace dotnetmauiallfeaturedemo.Services
 {
     public interface IBlogService
     {
-        Task<IEnumerable<Blog>> GetBlogsAync();
+        Task<IEnumerable<Blog>> GetBlogsAync(string apiUri);
 
         Task<Blog> GetBlogByIdAsync(int Id);
+
+        Task<bool> PostBlogAync(string url, Blog blog);
     }
 }
