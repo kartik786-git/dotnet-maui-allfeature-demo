@@ -19,6 +19,14 @@
         <CollectionView ItemsSource="{Binding Blogs}" RemainingItemsThreshold="10" >
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:Blog">
+                    <SwipeView>
+
+                        <SwipeView.LeftItems>
+                            <SwipeItems SwipeBehaviorOnInvoked="Close">
+                                <!--<SwipeItem Text="Edit" IconImageSource="dotnet_bot.svg" BackgroundColor="Blue" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=EditCommand}" CommandParameter="{Binding .}" />-->
+                                <SwipeItem Text="Delete" BackgroundColor="Red" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=DeleteCommand}" CommandParameter="{Binding .}" />
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
                     <!-- Define the item template for each item in the collection -->
                     <StackLayout>
                         <Frame Padding="10" Margin="3" BackgroundColor="#EEEEEE">
@@ -42,6 +50,7 @@
                             </Frame.GestureRecognizers>
                         </Frame>
                     </StackLayout>
+                    </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

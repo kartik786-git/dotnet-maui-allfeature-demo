@@ -72,6 +72,16 @@ namespace dotnetmauiallfeaturedemo.Services
             return false;
         }
 
+        public async Task<bool> DeleteBlogAsnc(string apiUri)
+        {
+            var response = await _httpClient.DeleteAsync(apiUri);
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 
 }

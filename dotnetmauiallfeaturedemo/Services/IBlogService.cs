@@ -14,5 +14,7 @@ namespace dotnetmauiallfeaturedemo.Services
         Task<Blog> GetBlogByIdAsync(int Id);
 
         Task<bool> PostBlogAync(string url, Blog blog);
+
+        Task<bool> DeleteBlogAsnc(string apiUri);
     }
 }

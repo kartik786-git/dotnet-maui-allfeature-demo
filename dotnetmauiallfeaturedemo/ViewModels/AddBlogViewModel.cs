@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using dotnetmauiallfeaturedemo.Model;
 using dotnetmauiallfeaturedemo.Services;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,10 @@ namespace dotnetmauiallfeaturedemo.ViewModels
 {
     public partial class AddBlogViewModel : BaseViewModel
     {
-        public AddBlogViewModel(IBlogService blogService)
+        public AddBlogViewModel(IBlogService blogService , IConfiguration configuration)
         {
             _blogService = blogService;
+            _configuration = configuration;
             Blog = new Blog();
         }
 
@@ -25,6 +27,7 @@ namespace dotnetmauiallfeaturedemo.ViewModels
         Blog blog;
 
         private readonly IBlogService _blogService;
+        private readonly IConfiguration _configuration;
 
         [RelayCommand]
         async Task GoBack()
@@ -35,9 +38,9 @@ namespace dotnetmauiallfeaturedemo.ViewModels
         [RelayCommand]
         async Task Save()
         {
-            //var blog = Blog.Name;
-            string baseURI = $"https://v19qjl2z-5035.asse.devtunnels.ms/api/blog";
-            bool isCreated = await _blogService.PostBlogAync(baseURI, Blog);
+            var settings = _configuration.GetRequiredSection("ApiSettings").Get<ApiConfigurationSetting>();
+            string apiUrl = $"{settings.ApiUri}api/blog";
+            bool isCreated = await _blogService.PostBlogAync(apiUrl, Blog);
             if (isCreated)
             {
                 await Shell.Current.GoToAsync("..");

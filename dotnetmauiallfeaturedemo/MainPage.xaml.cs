@@ -11,11 +11,16 @@ public partial class MainPage : ContentPage
         BindingContext = MainViewModel = mainViewModel;
     }
 
-       protected override async void OnAppearing()
+    protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
-        base.OnAppearing();
+        base.OnNavigatedTo(args);
         await MainViewModel.LoadDataAsync();
     }
+    //protected override async void OnAppearing()
+    //{
+    //    base.OnAppearing();
+    //    await MainViewModel.LoadDataAsync();
+    //}
 
 
 }

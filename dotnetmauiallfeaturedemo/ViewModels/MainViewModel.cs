@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using dotnetmauiallfeaturedemo.Model;
 using dotnetmauiallfeaturedemo.Services;
 using dotnetmauiallfeaturedemo.Views;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,9 +16,12 @@ namespace dotnetmauiallfeaturedemo.ViewModels
     public partial class MainViewModel : BaseViewModel
     {
         private readonly IBlogService _blogService;
-        public MainViewModel(IBlogService blogService)
+        private readonly IConfiguration _configuration;
+
+        public MainViewModel(IBlogService blogService , IConfiguration configuration)
         {
             _blogService = blogService;
+            _configuration = configuration;
         }
 
         [ObservableProperty]
@@ -44,7 +48,13 @@ namespace dotnetmauiallfeaturedemo.ViewModels
 
         public async Task LoadDataAsync()
         {
-            string apiUri = "https://v19qjl2z-5035.asse.devtunnels.ms/api/blog";
+            // first approch to get 
+            //string apiBaseUri = _configuration["ApiUri"];
+
+            // second approch
+            ApiConfigurationSetting apiConfigurationSetting = _configuration.GetRequiredSection("ApiSettings").Get<ApiConfigurationSetting>();
+
+            string apiUri = $"{apiConfigurationSetting.ApiUri}/api/blog";
 
             Blogs = new ObservableCollection<Blog>(await _blogService.GetBlogsAync(apiUri));
         }
@@ -69,5 +79,20 @@ namespace dotnetmauiallfeaturedemo.ViewModels
             await Shell.Current.GoToAsync(nameof(AddBlogPage));
         }
 
+        [RelayCommand]
+        public async void Edit()
+        {
+
+        }
+
+        [RelayCommand]
+        public async void Delete(Blog blog)
+        {
+            ApiConfigurationSetting apiConfigurationSetting = _configuration.GetRequiredSection("ApiSettings").Get<ApiConfigurationSetting>();
+
+            string apiUri = $"{apiConfigurationSetting.ApiUri}/api/blog/{blog.Id}";
+           await _blogService.DeleteBlogAsnc(apiUri);
+            LoadDataAsync();
+        }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using dotnetmauiallfeaturedemo.Services;
 using dotnetmauiallfeaturedemo.ViewModels;
 using dotnetmauiallfeaturedemo.Views;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.Reflection;
 
 namespace dotnetmauiallfeaturedemo;
 
@@ -10,6 +12,25 @@ public static class MauiProgram
 	public static MauiApp CreateMauiApp()
 	{
 		var builder = MauiApp.CreateBuilder();
+
+		string appsettingfile = "dotnetmauiallfeaturedemo.appsettings.json";
+
+        var getAssemebly = Assembly.GetExecutingAssembly();
+#if DEBUG // development 
+       appsettingfile = "dotnetmauiallfeaturedemo.appsettings.json";
+#endif
+#if DEVEPLOMENT_DEBUG
+        appsettingfile = "dotnetmauiallfeaturedemo.appsettings-Development.json";
+#endif
+        using var stream = getAssemebly.GetManifestResourceStream(appsettingfile);
+
+
+        var config = new ConfigurationBuilder()
+			.AddJsonStream(stream)
+			.Build();
+
+		builder.Configuration.AddConfiguration(config);
+
 		builder
 			.UseMauiApp<App>()
 			.ConfigureFonts(fonts =>

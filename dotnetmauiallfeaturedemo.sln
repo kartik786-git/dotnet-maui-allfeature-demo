@@ -8,12 +8,20 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Deveploment_debug|Any CPU = Deveploment_debug|Any CPU
+		Production_debug|Any CPU = Production_debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B2BA300C-94B1-438C-AC26-13FBA63A6552}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B2BA300C-94B1-438C-AC26-13FBA63A6552}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2BA300C-94B1-438C-AC26-13FBA63A6552}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B2BA300C-94B1-438C-AC26-13FBA63A6552}.Deveploment_debug|Any CPU.ActiveCfg = Deveploment_debug|Any CPU
+		{B2BA300C-94B1-438C-AC26-13FBA63A6552}.Deveploment_debug|Any CPU.Build.0 = Deveploment_debug|Any CPU
+		{B2BA300C-94B1-438C-AC26-13FBA63A6552}.Deveploment_debug|Any CPU.Deploy.0 = Deveploment_debug|Any CPU
+		{B2BA300C-94B1-438C-AC26-13FBA63A6552}.Production_debug|Any CPU.ActiveCfg = Production_debug|Any CPU
+		{B2BA300C-94B1-438C-AC26-13FBA63A6552}.Production_debug|Any CPU.Build.0 = Production_debug|Any CPU
+		{B2BA300C-94B1-438C-AC26-13FBA63A6552}.Production_debug|Any CPU.Deploy.0 = Production_debug|Any CPU
 		{B2BA300C-94B1-438C-AC26-13FBA63A6552}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2BA300C-94B1-438C-AC26-13FBA63A6552}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B2BA300C-94B1-438C-AC26-13FBA63A6552}.Release|Any CPU.Deploy.0 = Release|Any CPU
